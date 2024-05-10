@@ -1,0 +1,74 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/wuhaz/MySploit-UI/main/source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/Revenant", true))()
+
+Library:CreateNotification('UI Loading..', 'Please Be Patient', 6.5)
+
+local Window = Library:CreateWindow('MySploit', 'Natrual Disasters', 'MySploit', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Synapse X')
+
+Library:CreateNotification('UI Loaded', 'Succesfully', 5)
+
+local Tab = Window:CreateTab('Home', true, 'rbxassetid://3926305904', Vector2.new(484, 44), Vector2.new(36, 36))
+local Section = Tab:CreateSection('Home')
+local Label = Section:CreateLabel('Welcome to MySploit')
+local Button = Section:CreateButton('Discord', function()
+    setclipboard("https://discord.gg/tgzVs5HrDn")
+    Library:CreateNotification('Notification', 'Copied discord invite to Clipboard', 5)
+end)
+
+local Game = Window:CreateTab('Game Scripts', true, 'rbxassetid://3926305904', Vector2.new(484, 44), Vector2.new(36, 36))
+local Section = Game:CreateSection('Game Scripts')
+local Toggle = Section:CreateToggle('Walk On Water', false, Color3.fromRGB(0, 125, 255), 0.25, function(V)
+    if V == false then do game.Workspace.WaterLevel.CanCollide = false
+        game.Workspace.WaterLevel.Size = Vector3.new(10, 1, 10)
+    end
+end
+if V == true then do game.Workspace.WaterLevel.CanCollide = true
+        game.Workspace.WaterLevel.Size = Vector3.new(1000, 1, 1000)
+    end
+end
+end)
+local Toggle = Section:CreateToggle('Choose Map', false, Color3.fromRGB(0, 125, 255), 0.25, function(V)
+    if V == false then do game.Players.LocalPlayer.PlayerGui.MainGui.MapVotePage.Visible = false
+    end
+end
+if V == true then do game.Players.LocalPlayer.PlayerGui.MainGui.MapVotePage.Visible = true
+    end
+end
+end)
+local Toggle = Section:CreateToggle('Solid Island', false, Color3.fromRGB(0, 125, 255), 0.25, function(V)
+    for i, v in pairs (game.workspace:GetDescendants())do
+        if v.Name == 'LowerRocks' then -- change part to the name you want to look for
+            v.CanCollide = V
+        end
+    end
+end)
+local Button = Section:CreateButton('No Fall Damage', function()
+    Library:CreateNotification('Notification', 'If You Die Click No Fall Damage Again', 5)
+game.Players.LocalPlayer.Character.FallDamageScript:Destroy()
+end)
+local Farm = Window:CreateTab('AutoFarm', true, 'rbxassetid://3926305904', Vector2.new(484, 44), Vector2.new(36, 36))
+local Section = Farm:CreateSection('AutoFarm')
+local Button = Section:CreateButton('Enable', function()
+        local runService = game:GetService("RunService")
+        event = runService.RenderStepped:Connect(function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-264, 195, 288)
+        end)
+        if game.Players.LocalPlayer.Character.FallDamageScript then
+        game.Players.LocalPlayer.Character.FallDamageScript:Destroy()
+        end        
+end)
+local Button = Section:CreateButton('Disable', function()
+        event:Disconnect()
+end)
+local TP = Window:CreateTab('Teleports', true, 'rbxassetid://3926305904', Vector2.new(484, 44), Vector2.new(36, 36))
+local Button = Section:CreateButton('Tower', function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-264, 196, 288)
+end)
+local Button = Section:CreateButton('Island', function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-108, 49, 0)
+end)
+local Visual = Window:CreateTab('Visuals', true, 'rbxassetid://3926305904', Vector2.new(484, 44), Vector2.new(36, 36))
+local Button = Section:CreateButton('Button', function()
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(game.Players.LocalPlayer.Character.SurvivalTag.Value, "All")
+
+end)
